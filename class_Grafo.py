@@ -124,4 +124,67 @@ class Automata(Grafo):
         print("estado = ",self.__indexE)
         print("letra = ",self.__indexP)
         print("desapilado ",self.__desapilado)
+
+class Vertice():
+    def __init__(self,trans):
+        self.transicionesTH=trans
+    def buscarTrans(self,a,b):
+   
+        j=0
+        for i in self.transicionesTH:
+            if self.transicionesTH[j].compatible(a,b)==True:
+                print("transicion ",j," = ",self.transicionesTH[j].getl1()," ",self.transicionesTH[j].getl2()," ",self.transicionesTH[j].getl3()," ",self.transicionesTH[j].getTrans())
+                return j
+            j+=1
+        return -1
+
+    
+
+class Transicion():
+    def __init__(self,l1,l2,l3,id):
+        self.__l1=l1
+        self.__l2=l2
+        self.__l3=l3
+        self.__id=id
+    def getl1(self):
+        return self.__l1
+    def getl2(self):
+        return self.__l2
+    def getl3(self):
+        return self.__l3
+    def compatible(self,a,b):
+        if a==self.__l1 and b==self.__l2 :
+            return True
+        return False
+    def getTrans(self):
+        return self.__id
+        
+    
+
+
+class Pila():
+    def __init__(self):
+        self.__vec=["#"]
+    def apilar(self,elemento):
+        if elemento=="λ":
+            pass
+    
+        else:
+            self.__vec.append(elemento)
+    def desapilar(self):
+        if len(self.__vec)==0:
+            return "vacio"
+        else:
+            return self.__vec.pop()
+    def getTope(self):
+        if len(self.__vec)==0:
+
+            return "vacio"
+        else:
+            return self.__vec[len(self.__vec)-1]
+    def getVec(self):
+        return self.__vec
+
+
+
         
