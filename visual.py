@@ -149,22 +149,24 @@ class mostrar():
         self.hilo=threading.Thread(target=self.runAautomata)
         self.hilo.start()
         self.cambiarLetra(0)
-        self.automata.setVandera(True)
+        self.automata.setBandera(True)
         while(self.hilo.is_alive()):
             self.esperarCambios()
             self.actualizarGui()
-            self.automata.setVandera(True)
+            self.automata.setBandera(True)
             
         if(self.__indexE==2):
-            messagebox.showinfo("Resultado","es palindrome")
+            messagebox.showinfo("Resultado","Es palindrome")
+            self.vista.destroy()
         else :
-            messagebox.showinfo("Resultado","no es palindrome")
+            messagebox.showinfo("Resultado","No es palindrome")
+            self.vista.destroy()
         
             
     def esperarCambios(self):
         x=0
         while(True):
-            if(self.automata.getVandera()==True):
+            if(self.automata.getBandera()==True):
                 time.sleep(0.2)
                 x+=1
                 if(x==4):
